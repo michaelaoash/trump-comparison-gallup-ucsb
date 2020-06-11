@@ -30,7 +30,7 @@ approached.
 The R code:
 
 - reads [Presidential Job Approval data](https://www.presidency.ucsb.edu/statistics/data/presidential-job-approval)
-  (presumably from Gallup) maintained in a Google Sheets file by the [UCSB American
+  (reference to Gallup) maintained in a Google Sheets file by the [UCSB American
   Presidency Project](https://www.presidency.ucsb.edu/).
 
     - A one-time authorization may be required for the googlesheets4 R
