@@ -1,9 +1,9 @@
 # trump-approval
 
-Comments to [mash@econs.umass.edu]{mailto:mash@econs.umass.edu}
+Comments to [mash@econs.umass.edu](mailto:mash@econs.umass.edu)
 
 **How Trump compares with past presidents**, the lower panel of
-  [https://projects.fivethirtyeight.com/trump-approval-ratings/]{https://projects.fivethirtyeight.com/trump-approval-ratings/},
+  [https://projects.fivethirtyeight.com/trump-approval-ratings/](https://projects.fivethirtyeight.com/trump-approval-ratings/),
   plots pairwise time series of the dis/approval of each post-war
   president and the dis/approval of Donald Trump starting from the
   first day of each presidency.
@@ -29,9 +29,9 @@ approached.
 
 The R code:
 
-- reads (Gallup?) [Presidential Job Approval data maintained in a
-  Google Sheets file by the UCSB American Presidency
-  Project]{https://www.presidency.ucsb.edu/statistics/data/presidential-job-approval}.
+- reads [Presidential Job Approval data](https://www.presidency.ucsb.edu/statistics/data/presidential-job-approval)
+  (presumably from Gallup) maintained in a Google Sheets file by the UCSB American
+  Presidency Project](https://www.presidency.ucsb.edu/).
 
     - A one-time authorization may be required for the googlesheets4 R
       package to have access to Google Sheets.
@@ -45,3 +45,4 @@ The R code:
 - plots presidential approval during with a countdown to attempted
   reelection with t=0 at the date of the re-election attempt.
 
+![The Disapproval Data](How-Trump-Approval-Compares-2.png)
