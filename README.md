@@ -45,4 +45,6 @@ The R code:
 - plots presidential approval during with a countdown to attempted
   reelection with t=0 at the date of the re-election attempt.
 
-![The Disapproval Data](How-Trump-Approval-Compares-2.png)
+![Approval Data](How-Trump-Approval-Compares-1.png)
+
+![Disapproval Data](How-Trump-Approval-Compares-2.png)
