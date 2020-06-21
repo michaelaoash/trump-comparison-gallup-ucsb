@@ -85,10 +85,10 @@ test2  <- mutate(test2,
 
 ##View(select(test2,days_to_election, president, Approving, Approving.trump) )
 
-ggplot(test2, aes(x=days_to_election) ) + geom_line(data=filter(test2, !is.na(Approving)),aes(y=Approving,linetype=reelected,group=president)) +
-    geom_line(data=filter(test2, !is.na(Approving.trump)),aes(y=Approving.trump),color="green") + facet_wrap(facets = ~ president) +
+ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Approving)),aes(y=Approving,linetype=reelected,group=president)) +
+    geom_step(data=filter(test2, !is.na(Approving.trump)),aes(y=Approving.trump),color="green") + facet_wrap(facets = ~ president) +
     labs(title="How Trump Compares to Past Presidents: Approval (Trump in Green)", x="Days to Re-Election Attempt") + geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray")
 
-ggplot(test2, aes(x=days_to_election) ) + geom_line(data=filter(test2, !is.na(Disapproving)),aes(y=Disapproving,linetype=reelected,group=president)) +
-    geom_line(data=filter(test2, !is.na(Disapproving.trump)),aes(y=Disapproving.trump),color="orange") + facet_wrap(facets = ~ president) +
+ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Disapproving)),aes(y=Disapproving,linetype=reelected,group=president)) +
+    geom_step(data=filter(test2, !is.na(Disapproving.trump)),aes(y=Disapproving.trump),color="orange") + facet_wrap(facets = ~ president) +
     labs(title="How Trump Compares to Past Presidents: Disapproval (Trump in Orange)", x="Days to Re-Election Attempt") + geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray")
