@@ -39,8 +39,6 @@ The R code:
       code to use an xlsx spreadsheet manually downloaded from the
       Google Sheet.
 
-- corrects a misspelling of Barack Obama's name ("Barak") on the UCSB spreadsheet
-
 - plots presidential approval during with a countdown to attempted
   reelection with t=0 at the date of the re-election attempt.
 
