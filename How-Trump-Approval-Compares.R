@@ -21,9 +21,10 @@ for(president in presidents) {
                                       cbind( read_sheet("https://docs.google.com/spreadsheets/d/1iEl565M1mICTubTtoxXMdxzaHzAcPTnb3kpRndsrfyY/edit#gid=0",sheet=president), tibble(president) ))
 }
 
-presidential_approval  <- mutate(presidential_approval,
-    president = ifelse(president=="Barak Obama","Barack Obama",president)
-)
+## UCSB corrected typo in Barack Obama's name on the Google Sheet
+## presidential_approval  <- mutate(presidential_approval,
+##     president = ifelse(president=="Barak Obama","Barack Obama",president)
+## )
 
 presidents[which(presidents=="Barak Obama")] = "Barack Obama"
 
