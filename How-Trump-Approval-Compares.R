@@ -10,8 +10,8 @@ presidential_approval = data.frame()
 
 ## Replace googlesheets4 code as needed
 ## library(readxl)
-## presidents  <- excel_sheets("American Presidency Project - Approval Ratings for POTUS.xlsx")
-## presidential_approval = bind_rows(presidential_approval, cbind( read_xlsx("American Presidency Project - Approval Ratings for POTUS.xlsx", sheet=president,col_type=c("guess","guess","guess","guess","text")), tibble(president)  ))
+## presidents  <- excel_sheets("American Presidency Project - Approval Ratings for POTUSxlsx")
+## presidential_approval = bind_rows(presidential_approval, cbind( read_xlsx("American Presidency Project - Approval Ratings for POTUSxlsx", sheet=president,col_type=c("guess","guess","guess","guess","text")), tibble(president)  ))
 
 presidents  <- pull(gs4_get("https://docs.google.com/spreadsheets/d/1iEl565M1mICTubTtoxXMdxzaHzAcPTnb3kpRndsrfyY/edit#gid=0")$sheets[,1])
 
@@ -22,11 +22,16 @@ for(president in presidents) {
 }
 
 ## UCSB corrected typo in Barack Obama's name on the Google Sheet
-## presidential_approval  <- mutate(presidential_approval,
-##     president = ifelse(president=="Barak Obama","Barack Obama",president)
-## )
+presidential_approval  <- mutate(presidential_approval,
+                                 president = ifelse(president=="Barak Obama","Barack Obama",
+                                             ifelse(president=="Harry S. Truman","Harry S Truman",
+                                             ifelse(president=="George Bush","George H. W. Bush",                                                    
+                                                    president)))
+                                             )
 
 presidents[which(presidents=="Barak Obama")] = "Barack Obama"
+presidents[which(presidents=="Harry S. Truman")] = "Harry S Truman"
+presidents[which(presidents=="George Bush")] = "George H. W. Bush"
 
 
 ## https://www.thegreenpapers.com/Hx/PresidentialElectionEvents.phtml
@@ -38,7 +43,7 @@ date_of_election  <- read_csv(file=
 1936-11-03,FALSE,TRUE,"Franklin D. Roosevelt",Reelected,1937-01-20
 1940-11-05,FALSE,TRUE,"Franklin D. Roosevelt",Reelected,1941-01-20
 1944-11-07,FALSE,TRUE,"Franklin D. Roosevelt",Reelected,1945-01-20
-1948-11-02,TRUE,TRUE,"Harry S. Truman",Reelected,1949-01-20
+1948-11-02,TRUE,TRUE,"Harry S Truman",Reelected,1949-01-20
 1952-11-04,TRUE,FALSE,,,1953-01-20
 1956-11-06,TRUE,TRUE,"Dwight D. Eisenhower",Reelected,1957-01-21
 1960-11-08,TRUE,FALSE,,,1961-01-20
@@ -50,7 +55,7 @@ date_of_election  <- read_csv(file=
 1980-11-04,TRUE,TRUE,"Jimmy Carter",Not,1981-01-20
 1984-11-06,TRUE,TRUE,"Ronald Reagan",Reelected,1985-01-21
 1988-11-08,TRUE,FALSE,,,1989-01-20
-1992-11-03,TRUE,TRUE,"George Bush",Not,1993-01-20
+1992-11-03,TRUE,TRUE,"George H. W. Bush",Not,1993-01-20
 1996-11-05,TRUE,TRUE,"William J. Clinton",Reelected,1997-01-20
 2000-11-07,TRUE,FALSE,,,2001-01-20
 2004-11-02,TRUE,TRUE,"George W. Bush",Reelected,2005-01-20
@@ -76,20 +81,24 @@ trump_approval  <-  crossing ( trump_approval, data.frame(president_merge=presid
 test  <- full_join(presidential_approval, trump_approval, by=c("days_to_election","president"="president_merge"), suffix=c("",".trump")  ) %>% arrange(president, days_to_election)
 
 
-test2  <- filter(test, days_to_next_inaug <= 0 | is.na(days_to_next_inaug) , president %in% c("Barack Obama","George W. Bush","William J. Clinton", "George Bush","Ronald Reagan","Jimmy Carter","Gerald R. Ford","Richard Nixon","Lyndon B. Johnson","John F. Kennedy","Dwight D. Eisenhower", "Harry S. Truman" ) )
+test2  <- filter(test, days_to_next_inaug <= 0 | is.na(days_to_next_inaug) , president %in% c("Barack Obama","George W. Bush","William J. Clinton", "George H. W. Bush","Ronald Reagan","Jimmy Carter","Gerald R. Ford","Richard Nixon","Lyndon B. Johnson","John F. Kennedy","Dwight D. Eisenhower", "Harry S Truman" ) )
 
 
 
 test2  <- mutate(test2,
                  president = factor(president,levels=
-                                                  c("Barack Obama","Donald Trump", "George W. Bush","William J. Clinton", "George Bush","Ronald Reagan","Jimmy Carter","Gerald R. Ford","Richard Nixon","Lyndon B. Johnson","John F. Kennedy", "Dwight D. Eisenhower", "Harry S. Truman")))
+                                                  c("Barack Obama","Donald Trump", "George W. Bush","William J. Clinton", "George H. W. Bush","Ronald Reagan","Jimmy Carter","Gerald R. Ford","Richard Nixon","Lyndon B. Johnson","John F. Kennedy", "Dwight D. Eisenhower", "Harry S Truman")))
 
 ##View(select(test2,days_to_election, president, Approving, Approving.trump) )
 
 ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Approving)),aes(y=Approving,linetype=reelected,group=president)) +
-    geom_step(data=filter(test2, !is.na(Approving.trump)),aes(y=Approving.trump),color="green") + facet_wrap(facets = ~ president) +
-    labs(title="How Trump Compares to Past Presidents: Approval (Trump in Green)", x="Days to Re-Election Attempt") + geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray")
+    geom_step(data=filter(test2, !is.na(Approving.trump)),aes(y=Approving.trump),color="green") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
+    labs(title="How Trump Compares to Past Presidents: Approval (Trump in Green)", x="Days to Re-Election Attempt") +
+    geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
+    theme(axis.text.x = element_text(angle = 60, hjust=1))
 
 ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Disapproving)),aes(y=Disapproving,linetype=reelected,group=president)) +
-    geom_step(data=filter(test2, !is.na(Disapproving.trump)),aes(y=Disapproving.trump),color="orange") + facet_wrap(facets = ~ president) +
-    labs(title="How Trump Compares to Past Presidents: Disapproval (Trump in Orange)", x="Days to Re-Election Attempt") + geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray")
+    geom_step(data=filter(test2, !is.na(Disapproving.trump)),aes(y=Disapproving.trump),color="orange") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
+    labs(title="How Trump Compares to Past Presidents: Disapproval (Trump in Orange)", x="Days to Re-Election Attempt") +
+    geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
+    theme(axis.text.x = element_text(angle = 60, hjust=1))
