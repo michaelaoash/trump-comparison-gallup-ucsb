@@ -91,14 +91,28 @@ test2  <- mutate(test2,
 
 ##View(select(test2,days_to_election, president, Approving, Approving.trump) )
 
+
+(today  <- Sys.Date())
+(last_poll_date  <- max(filter(presidential_approval, president=="Donald Trump")$`End Date`))
+(trump_election_date  <- max(filter(presidential_approval, president=="Donald Trump")$election_date))
+(last_poll_days_to_election  <- as.numeric(as.Date(trump_election_date)) - as.numeric(as.Date(last_poll_date)))
+(today_days_to_election  <- as.numeric(as.Date(trump_election_date)) - as.numeric(as.Date(today)))
+
+
+mySubtitle = paste("Last poll: ", last_poll_days_to_election, " Days to election. ",
+                   "Today: ", today_days_to_election, " Days to election ",
+                   "(",Sys.Date(),")", sep="" )
+
+
+
 ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Approving)),aes(y=Approving,linetype=reelected,group=president)) +
     geom_step(data=filter(test2, !is.na(Approving.trump)),aes(y=Approving.trump),color="green") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
-    labs(title="How Trump Compares to Past Presidents: Approval (Trump in Green)", x="Days to Re-Election Attempt") +
+    labs(title="Trump Approval (Green) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
     geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
     theme(axis.text.x = element_text(angle = 60, hjust=1))
 
 ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Disapproving)),aes(y=Disapproving,linetype=reelected,group=president)) +
     geom_step(data=filter(test2, !is.na(Disapproving.trump)),aes(y=Disapproving.trump),color="orange") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
-    labs(title="How Trump Compares to Past Presidents: Disapproval (Trump in Orange)", x="Days to Re-Election Attempt") +
+    labs(title="Trump Disapproval (Orange) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
     geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
     theme(axis.text.x = element_text(angle = 60, hjust=1))
