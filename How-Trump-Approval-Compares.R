@@ -100,9 +100,7 @@ test2  <- mutate(test2,
 
 
 mySubtitle = paste("Last poll: ", last_poll_days_to_election, " Days to election. ",
-                   "Today: ", today_days_to_election, " Days to election ",
-                   "(",Sys.Date(),")", sep="" )
-
+                   "This version (", Sys.Date(), "): ", today_days_to_election, " Days to election.", sep="" )
 
 
 ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Approving)),aes(y=Approving,linetype=reelected,group=president)) +
