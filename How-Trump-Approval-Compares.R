@@ -99,7 +99,7 @@ test2  <- mutate(test2,
 (today_days_to_election  <- as.numeric(as.Date(trump_election_date)) - as.numeric(as.Date(today)))
 
 
-mySubtitle = paste("Last poll: ", last_poll_days_to_election, " Days to election. ",
+mySubtitle = paste("Last poll (",last_poll_date,"): ", last_poll_days_to_election, " Days to election. ",
                    "This version (", Sys.Date(), "): ", today_days_to_election, " Days to election.", sep="" )
 
 
