@@ -2,6 +2,8 @@
 
 Comments to [mash@econs.umass.edu](mailto:mash@econs.umass.edu)
 
+Scroll to bottom to see the most recent plots.
+
 **How Trump compares with past presidents**, the lower panel of
   [https://projects.fivethirtyeight.com/trump-approval-ratings/](https://projects.fivethirtyeight.com/trump-approval-ratings/),
   plots pairwise time series of the dis/approval of each post-war
