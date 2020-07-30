@@ -21,6 +21,11 @@ for(president in presidents) {
                                       cbind( read_sheet("https://docs.google.com/spreadsheets/d/1iEl565M1mICTubTtoxXMdxzaHzAcPTnb3kpRndsrfyY/edit#gid=0",sheet=president), tibble(president) ))
 }
 
+## Ad hoc update
+presidential_approval = bind_rows(presidential_approval,tibble(`Start Date`=as.Date("2020-07-01"), `End Date`=as.Date("2020-07-23"), Approving=41, Disapproving=56, `Unsure/NoData`=3, president="Donald Trump"))
+
+
+
 ## UCSB corrected typo in Barack Obama's name on the Google Sheet
 presidential_approval  <- mutate(presidential_approval,
                                  president = ifelse(president=="Barak Obama","Barack Obama",
