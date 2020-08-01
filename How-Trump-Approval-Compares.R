@@ -21,8 +21,8 @@ for(president in presidents) {
                                       cbind( read_sheet("https://docs.google.com/spreadsheets/d/1iEl565M1mICTubTtoxXMdxzaHzAcPTnb3kpRndsrfyY/edit#gid=0",sheet=president), tibble(president) ))
 }
 
-## Ad hoc update
-presidential_approval = bind_rows(presidential_approval,tibble(`Start Date`=as.Date("2020-07-01"), `End Date`=as.Date("2020-07-23"), Approving=41, Disapproving=56, `Unsure/NoData`=3, president="Donald Trump"))
+## ## Ad hoc update
+## presidential_approval = bind_rows(presidential_approval,tibble(`Start Date`=as.Date("2020-07-01"), `End Date`=as.Date("2020-07-23"), Approving=41, Disapproving=56, `Unsure/NoData`=3, president="Donald Trump"))
 
 
 
@@ -110,12 +110,12 @@ mySubtitle = paste("Last poll (",last_poll_date,"): ", last_poll_days_to_electio
 
 ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Approving)),aes(y=Approving,linetype=reelected,group=president)) +
     geom_step(data=filter(test2, !is.na(Approving.trump)),aes(y=Approving.trump),color="green") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
-    labs(title="Trump Approval (Green) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
+    labs(title="Trump Gallup Approval (Green) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
     geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
     theme(axis.text.x = element_text(angle = 60, hjust=1))
 
 ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Disapproving)),aes(y=Disapproving,linetype=reelected,group=president)) +
     geom_step(data=filter(test2, !is.na(Disapproving.trump)),aes(y=Disapproving.trump),color="orange") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
-    labs(title="Trump Disapproval (Orange) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
+    labs(title="Trump Gallup Disapproval (Orange) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
     geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
     theme(axis.text.x = element_text(angle = 60, hjust=1))
