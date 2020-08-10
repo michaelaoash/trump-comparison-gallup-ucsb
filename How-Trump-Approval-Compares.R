@@ -21,8 +21,15 @@ for(president in presidents) {
                                       cbind( read_sheet("https://docs.google.com/spreadsheets/d/1iEl565M1mICTubTtoxXMdxzaHzAcPTnb3kpRndsrfyY/edit#gid=0",sheet=president), tibble(president) ))
 }
 
+presidential_approval  <- arrange(presidential_approval, as.Date(`End Date`))
+
+    
 ## ## Ad hoc update
 ## presidential_approval = bind_rows(presidential_approval,tibble(`Start Date`=as.Date("2020-07-01"), `End Date`=as.Date("2020-07-23"), Approving=41, Disapproving=56, `Unsure/NoData`=3, president="Donald Trump"))
+
+## Stretch the most recent Gallup poll data to today.
+stretch  <- tibble(`Start Date`=as.Date(last(presidential_approval$`End Date`)), `End Date`=Sys.Date(), Approving=NA, Disapproving=NA, `Unsure/NoData`=NA, president=NA)
+presidential_approval  <- fill(bind_rows(presidential_approval, stretch), Approving, Disapproving, `Unsure/NoData`, president)
 
 
 
