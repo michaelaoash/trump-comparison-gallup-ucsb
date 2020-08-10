@@ -28,9 +28,11 @@ presidential_approval  <- arrange(presidential_approval, as.Date(`End Date`))
 ## presidential_approval = bind_rows(presidential_approval,tibble(`Start Date`=as.Date("2020-07-01"), `End Date`=as.Date("2020-07-23"), Approving=41, Disapproving=56, `Unsure/NoData`=3, president="Donald Trump"))
 
 ## Stretch the most recent Gallup poll data to today.
-stretch  <- tibble(`Start Date`=as.Date(last(presidential_approval$`End Date`)), `End Date`=Sys.Date(), Approving=NA, Disapproving=NA, `Unsure/NoData`=NA, president=NA)
-presidential_approval  <- fill(bind_rows(presidential_approval, stretch), Approving, Disapproving, `Unsure/NoData`, president)
+stretch  <- tibble(`Start Date`=as.Date(last(presidential_approval$`End Date`)), `End Date`=Sys.Date(), Approving=NA, Disapproving=NA, `Unsure/NoData`=NA, president=NA, filled=TRUE)
 
+if (last(presidential_approval$`End Date`) < Sys.Date()) {
+    presidential_approval  <- fill(bind_rows(presidential_approval, stretch), Approving, Disapproving, `Unsure/NoData`, president)
+}
 
 
 ## UCSB corrected typo in Barack Obama's name on the Google Sheet
@@ -105,7 +107,7 @@ test2  <- mutate(test2,
 
 
 (today  <- Sys.Date())
-(last_poll_date  <- max(filter(presidential_approval, president=="Donald Trump")$`End Date`))
+(last_poll_date  <- max(filter(presidential_approval, president=="Donald Trump", is.na(filled))$`End Date`))
 (trump_election_date  <- max(filter(presidential_approval, president=="Donald Trump")$election_date))
 (last_poll_days_to_election  <- as.numeric(as.Date(trump_election_date)) - as.numeric(as.Date(last_poll_date)))
 (today_days_to_election  <- as.numeric(as.Date(trump_election_date)) - as.numeric(as.Date(today)))
