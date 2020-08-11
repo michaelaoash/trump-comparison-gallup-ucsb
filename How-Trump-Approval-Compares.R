@@ -82,12 +82,12 @@ date_of_election  <- read_csv(file=
 presidential_approval  <- left_join(presidential_approval, date_of_election, by=c("president"="incumbent"))
 
 presidential_approval  <- mutate(presidential_approval,
-                                 days_to_election = as.numeric(as.Date(`Start Date`) - as.Date(election_date)),
-                                 days_to_next_inaug = as.numeric(as.Date(`Start Date`) - as.Date(next_inauguration))
+                                 days_to_election = as.numeric(as.Date(`End Date`) - as.Date(election_date)),
+                                 days_to_next_inaug = as.numeric(as.Date(`End Date`) - as.Date(next_inauguration))
                                  )
 
 
-## ggplot(presidential_approval, aes(x = `Start Date`, y= Approving))  + geom_line()  + facet_wrap(facets = ~ president, scales="free_x" )
+## ggplot(presidential_approval, aes(x = `End Date`, y= Approving))  + geom_line()  + facet_wrap(facets = ~ president, scales="free_x" )
 
 trump_approval  <- filter(presidential_approval, president=="Donald Trump")
 trump_approval  <-  crossing ( trump_approval, data.frame(president_merge=presidents))
