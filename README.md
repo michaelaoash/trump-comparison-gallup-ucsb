@@ -47,3 +47,7 @@ The R code:
 ![Approval Data](How-Trump-Approval-Compares-1.png)
 
 ![Disapproval Data](How-Trump-Approval-Compares-2.png)
+
+![Unsure Data](How-Trump-Approval-Compares-3.png)
+
+![Net Approval Data](How-Trump-Approval-Compares-4.png)
