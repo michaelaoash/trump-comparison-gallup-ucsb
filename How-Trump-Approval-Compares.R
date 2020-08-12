@@ -83,7 +83,8 @@ presidential_approval  <- left_join(presidential_approval, date_of_election, by=
 
 presidential_approval  <- mutate(presidential_approval,
                                  days_to_election = as.numeric(as.Date(`End Date`) - as.Date(election_date)),
-                                 days_to_next_inaug = as.numeric(as.Date(`End Date`) - as.Date(next_inauguration))
+                                 days_to_next_inaug = as.numeric(as.Date(`End Date`) - as.Date(next_inauguration)),
+                                 `Net Favorable` = Approving - Disapproving
                                  )
 
 
@@ -128,3 +129,18 @@ ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Di
     labs(title="Trump Gallup Disapproval (Orange) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
     geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
     theme(axis.text.x = element_text(angle = 60, hjust=1))
+
+
+ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(`Unsure/NoData`)),aes(y=`Unsure/NoData`,linetype=reelected,group=president)) +
+    geom_step(data=filter(test2, !is.na(`Unsure/NoData.trump`)),aes(y=`Unsure/NoData.trump`),color="purple") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
+    labs(title="Trump Gallup Unsure (Purple) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
+    geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
+    theme(axis.text.x = element_text(angle = 60, hjust=1))
+
+
+ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(`Net Favorable`)),aes(y=`Net Favorable`,linetype=reelected,group=president)) +
+    geom_step(data=filter(test2, !is.na(`Net Favorable.trump`)),aes(y=`Net Favorable.trump`),color="blue") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
+    labs(title="Trump Gallup Net Favorable (Blue) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
+    geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
+    theme(axis.text.x = element_text(angle = 60, hjust=1))
+
