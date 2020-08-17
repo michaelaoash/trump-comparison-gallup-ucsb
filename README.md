@@ -24,9 +24,10 @@ approaching the November 2020 election with LBJ well into his second
 term (when the Vietnam War had been widely recognized as a disaster),
 which gives little insight into how LBJ was rolling towards a
 landslide reelection in summer of 1964. Gerald Ford's line begins at
-his t=0, which was something like 1.5 years into the 4-year term that
-began with Nixon's election; thus, it is hard to calibrate Ford's
-approval against other presidents as re-election attempt approached.
+left with his first day in office, which was something like 1.5 years
+into the 4-year term that began with Nixon's election; thus, it is
+hard to calibrate Ford's approval against other presidents as
+re-election attempt approached.
 
 The R code:
 
@@ -41,7 +42,7 @@ The R code:
       code to use an xlsx spreadsheet manually downloaded from the
       Google Sheet.
 
-- plots presidential approval during with a countdown to attempted
+- plots presidential approval with a countdown to attempted
   reelection with t=0 at the date of the re-election attempt.
 
 ![Approval Data](How-Trump-Approval-Compares-1.png)
