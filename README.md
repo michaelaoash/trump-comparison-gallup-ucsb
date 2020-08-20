@@ -1,5 +1,3 @@
-# trump-approval
-
 ![Approval Data](plots/How-Trump-Approval-Compares-1.png)
 
 ![Disapproval Data](plots/How-Trump-Approval-Compares-2.png)
