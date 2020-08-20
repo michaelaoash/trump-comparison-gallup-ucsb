@@ -1,8 +1,14 @@
 # trump-approval
 
-Comments to [mash@econs.umass.edu](mailto:mash@econs.umass.edu)
+![Approval Data](plots/How-Trump-Approval-Compares-1.png)
 
-Scroll to bottom to see the most recent plots.
+![Disapproval Data](plots/How-Trump-Approval-Compares-2.png)
+
+![Unsure Data](plots/How-Trump-Approval-Compares-3.png)
+
+![Net Approval Data](plots/How-Trump-Approval-Compares-4.png)
+
+Comments to [mash@econs.umass.edu](mailto:mash@econs.umass.edu)
 
 **How Trump compares with past presidents**, the lower panel of
   [https://projects.fivethirtyeight.com/trump-approval-ratings/](https://projects.fivethirtyeight.com/trump-approval-ratings/),
@@ -22,12 +28,12 @@ assassination of JFK, and Gerald Ford because of the resignation of
 Richard Nixon. For example, the fivethirtyeight version matches Trump
 approaching the November 2020 election with LBJ well into his second
 term (when the Vietnam War had been widely recognized as a disaster),
-which gives little insight into how LBJ was rolling towards a
-landslide reelection in summer of 1964. Gerald Ford's line begins at
-left with his first day in office, which was something like 1.5 years
-into the 4-year term that began with Nixon's election; thus, it is
-hard to calibrate Ford's approval against other presidents as
-re-election attempt approached.
+which gives little insight into how in summer and fall 1964 LBJ was
+rolling towards a landslide reelection. Gerald Ford's line begins at
+left with his first day in office, which was roughly 1.5 years into
+the 4-year term that began with Nixon's 1972 re-election; thus, it is
+hard to compare Ford's approval as Ford's re-election attempt
+approached with that of other presidents.
 
 The R code:
 
@@ -45,10 +51,3 @@ The R code:
 - plots presidential approval with a countdown to attempted
   reelection with t=0 at the date of the re-election attempt.
 
-![Approval Data](How-Trump-Approval-Compares-1.png)
-
-![Disapproval Data](How-Trump-Approval-Compares-2.png)
-
-![Unsure Data](How-Trump-Approval-Compares-3.png)
-
-![Net Approval Data](How-Trump-Approval-Compares-4.png)
