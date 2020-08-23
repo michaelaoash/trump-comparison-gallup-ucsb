@@ -122,25 +122,25 @@ ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Ap
     geom_step(data=filter(test2, !is.na(Approving.trump)),aes(y=Approving.trump),color="green") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
     labs(title="Trump Gallup Approval (Green) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
     geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
-    theme(axis.text.x = element_text(angle = 60, hjust=1))
+    theme(axis.text.x = element_text(angle = 60, hjust=1), legend.position="bottom")
 
 ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(Disapproving)),aes(y=Disapproving,linetype=Outcome,group=president)) +
     geom_step(data=filter(test2, !is.na(Disapproving.trump)),aes(y=Disapproving.trump),color="orange") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
     labs(title="Trump Gallup Disapproval (Orange) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
     geom_hline(yintercept=50,color="gray") + geom_vline(xintercept=0,color="gray") +
-    theme(axis.text.x = element_text(angle = 60, hjust=1))
+    theme(axis.text.x = element_text(angle = 60, hjust=1), legend.position="bottom")
 
 
 ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(`Unsure/NoData`)),aes(y=`Unsure/NoData`,linetype=Outcome,group=president)) +
     geom_step(data=filter(test2, !is.na(`Unsure/NoData.trump`)),aes(y=`Unsure/NoData.trump`),color="purple") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
     labs(title="Trump Gallup Unsure (Purple) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
     geom_vline(xintercept=0,color="gray") +
-    theme(axis.text.x = element_text(angle = 60, hjust=1))
+    theme(axis.text.x = element_text(angle = 60, hjust=1), legend.position="bottom")
 
 
 ggplot(test2, aes(x=days_to_election) ) + geom_step(data=filter(test2, !is.na(`Net Approval`)),aes(y=`Net Approval`,linetype=Outcome,group=president)) +
     geom_step(data=filter(test2, !is.na(`Net Approval.trump`)),aes(y=`Net Approval.trump`),color="blue") + facet_wrap(facets = ~ president) + scale_x_continuous(breaks=c(-1095,-730,-365,-180,-90,0)) +
     labs(title="Trump Gallup Net Approval (Blue) Compared to Past Presidents", subtitle=mySubtitle, x="Days to Re-Election Attempt") +
     geom_hline(yintercept=0,color="gray") + geom_vline(xintercept=0,color="gray") +
-    theme(axis.text.x = element_text(angle = 60, hjust=1))
+    theme(axis.text.x = element_text(angle = 60, hjust=1), legend.position="bottom")
 
