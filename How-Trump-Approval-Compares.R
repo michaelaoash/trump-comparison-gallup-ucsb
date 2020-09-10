@@ -25,6 +25,8 @@ presidential_approval  <- arrange(presidential_approval, as.Date(`End Date`))
 
     
 ## ## Ad hoc update
+## ## Check manually if new data at https://news.gallup.com/poll/203198/presidential-approval-ratings-donald-trump.aspx
+## ## and enter below
 ## presidential_approval = bind_rows(presidential_approval,tibble(`Start Date`=as.Date("2020-07-01"), `End Date`=as.Date("2020-07-23"), Approving=41, Disapproving=56, `Unsure/NoData`=3, president="Donald Trump"))
 
 ## Stretch the most recent Gallup poll data to today.
