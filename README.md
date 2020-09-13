@@ -36,7 +36,7 @@ approached with that of other presidents.
 The R code:
 
 - reads [Presidential Job Approval data](https://www.presidency.ucsb.edu/statistics/data/presidential-job-approval)
-  (reference to Gallup) maintained in a Google Sheets file by the [UCSB American
+  (with reference to Gallup) maintained in a Google Sheets file by the [UCSB American
   Presidency Project](https://www.presidency.ucsb.edu/).
 
     - A one-time authorization may be required for the googlesheets4 R
@@ -45,6 +45,9 @@ The R code:
     - If the Google Sheets cannot be read in R, there is alternative
       code to use an xlsx spreadsheet manually downloaded from the
       Google Sheet.
+      
+    - Includes the option to update manually if more recent data are available from 
+      [Gallup](https://news.gallup.com/poll/203198/presidential-approval-ratings-donald-trump.aspx)
 
 - plots presidential approval with a countdown to attempted
   reelection with t=0 at the date of the re-election attempt.
